@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stopwatch Demo</title>
+	<meta charset="utf-8">
+	<style>
+		h1, p, div{
+			font-size: 40px;
+		}
+		button{
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Stopwatch Demo</h1>
+
+	<p id="timer">0</p><br>
+	<button id="timeStart" onclick="startTimer()">Start/Stop</button> <button id="reset">Reset</button> <button id="recordTime">Record Time</button>
+
+	<p>Past Times</p>
+	<div id="pastTimes"></div>
+
+	<script>
+		var clicked = false;
+		var oldTime = new Date().getTime();
+		function timeCount(){
+			var newTime = new Date().getTime();
+			var timeDiff = (newTime - oldTime)/100;
+			document.getElementById('timer').innerHTML = timeDiff;
+		}
+		function startTimer(){
+			setInterval(timeCount, 10);
+		}
+		function stopTimer(){
+			if(clicked == true){
+				clearInterval(timeCount);
+				clicked = false;	
+			}
+		}
+
+		function resetTimer(){
+			clearInterval(timeCount);
+			startTimer();
+		}
+	</script>
+</body>
+</html>
